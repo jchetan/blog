@@ -18,6 +18,7 @@ app.listen(PORT, ()=>{
 })
 
 app.get('/',(req,res)=>{
+    /*
     BlogPost.find(
         {},
         (error, blogposts) => {
@@ -25,6 +26,8 @@ app.get('/',(req,res)=>{
             res.render('index', {blogposts: blogposts});
         }
     );    
+    */
+   res.send("Hello World");
 })
 
 app.get('/about',(req,res)=>{
