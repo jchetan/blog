@@ -25,13 +25,13 @@
                     <div class="post-preview">
                         <a href="/post/<%= blogposts[i]._id %>">
                             <h2 class="post-title"><%= blogposts[i].title %></h2>
-                            <h3 class="post-subtitle"><%= blogposts[i].body %></h3>
                             <p class="post-meta">
                                 First Posted on <%= blogposts[i].date_posted %>
                             </p>
                             <p class="post-meta">
                                 Post Updated on <%= blogposts[i].date_updated %>
                             </p>
+                            <div class="d-flex mb-4"><a class="btn btn-primary text-uppercase" href="/edit_post/<%= blogposts[i]._id %>">Edit Post</a></div>
                         </a>                        
                     </div>
                     <!-- Divider-->

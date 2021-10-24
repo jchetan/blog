@@ -87,5 +87,33 @@ app.post('/posts/store',(req,res)=>{
             res.redirect('/')
         }
     );    
-})    
+})
 
+app.get('/edit_post/:id',(req,res)=>{
+    BlogPost.findById(req.params.id, (error, blogpost) =>{
+        res.render('edit_post', {blogpost: blogpost});
+        console.log(error,blogpost)
+    })      
+})
+
+app.post(
+    '/save_post/:id',
+    (req,res)=>{
+        var date_time = new Date();
+        console.log(req.params.id);
+        console.log(req.body.blog_title);
+        console.log(req.body.blog_content);
+        BlogPost.findByIdAndUpdate(
+            req.params.id, 
+            {
+                title: req.body.blog_title,
+                body: req.body.blog_content,
+                date_updated: date_time.toJSON().slice(0,19).replace('T',':')
+            },
+            (error, blogpost) =>{
+                console.log(error,blogpost)
+            }
+        ) 
+        res.redirect('/');
+    }
+);
