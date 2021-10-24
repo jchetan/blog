@@ -42,7 +42,7 @@ app.get('/',(req,res)=>{
             res.render('index', {blogposts: blogposts});
         }
     );      
-   */
+    */
 })
 
 app.get('/all_posts',(req,res)=>{   
