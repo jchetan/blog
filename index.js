@@ -32,12 +32,25 @@ app.listen(PORT, ()=>{
 })
 
 app.get('/',(req,res)=>{
-    
+
+    res.render('index');
+    /*
     BlogPost.find(
         {},
         (error, blogposts) => {
             console.log(blogposts);
             res.render('index', {blogposts: blogposts});
+        }
+    );      
+   */
+})
+
+app.get('/all_posts',(req,res)=>{   
+    BlogPost.find(
+        {},
+        (error, blogposts) => {
+            console.log(blogposts);
+            res.render('all_posts', {blogposts: blogposts});
         }
     );      
    
