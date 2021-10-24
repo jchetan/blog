@@ -12,22 +12,35 @@ app.use(express.static('public'));
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
+mongoose.connect(
+    'mongodb+srv://jchetan:vatja123@cluster0.sgaf5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', 
+    { useNewUrlParser : true, useUnifiedTopology: true }
+);
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once(
+    "open", 
+    function () {
+        console.log("Connected to MongoDB successfully");
+    }
+);
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, ()=>{
     console.log("App listening on port 3000")
 })
 
 app.get('/',(req,res)=>{
-    /*
+    
     BlogPost.find(
         {},
         (error, blogposts) => {
             console.log(blogposts);
             res.render('index', {blogposts: blogposts});
         }
-    );    
-    */
-   res.send("Hello World");
+    );      
+   
 })
 
 app.get('/about',(req,res)=>{
@@ -63,16 +76,3 @@ app.post('/posts/store',(req,res)=>{
     );    
 })    
 
-mongoose.connect(
-    'mongodb+srv://jchetan:vatja123@cluster0.sgaf5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', 
-    { useNewUrlParser : true, useUnifiedTopology: true }
-);
-
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-db.once(
-    "open", 
-    function () {
-        console.log("Connected to MongoDB successfully");
-    }
-);
