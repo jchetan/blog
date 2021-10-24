@@ -66,13 +66,13 @@ app.get('/contact',(req,res)=>{
 
 app.get('/post/:id',(req,res)=>{
     BlogPost.findById(req.params.id, (error, blogpost) =>{
-        res.render('post', {blogpost: blogpost});
+        res.render('view_post', {blogpost: blogpost});
         console.log(error,blogpost)
     })    
 })
 
 app.get('/posts/new',(req,res)=>{
-    res.render('create')
+    res.render('create_post')
 })
 
 app.post('/posts/store',(req,res)=>{
