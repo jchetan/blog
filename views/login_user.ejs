@@ -10,7 +10,7 @@
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="page-heading">
-                            <h1>Create New Post</h1>                            
+                            <h1>Login</h1>                            
                         </div>
                     </div>
                 </div>
@@ -21,7 +21,7 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
-                        <p>Create a new Post</p>
+                        <p>Login</p>
                         <div class="my-5">
                             <!-- * * * * * * * * * * * * * * *-->
                             <!-- * * SB Forms Contact Form * *-->
@@ -30,18 +30,18 @@
                             <!-- To make this form functional, sign up at-->
                             <!-- https://startbootstrap.com/solution/contact-forms-->
                             <!-- to get an API token!-->
-                            <form id="postForm" data-sb-form-api-token="API_TOKEN" action="/create_post" method="POST">
+                            <form id="postForm" data-sb-form-api-token="API_TOKEN" action="/login_user" method="POST">
                                 <div class="form-floating">
-                                    <input class="form-control" id="blog_title" name="blog_title" type="text" placeholder="Enter blog title..."/>
-                                    <label for="name">Blog Title</label>                                    
+                                    <input class="form-control" id="username" name="username" type="text" placeholder="Enter Username..."/>
+                                    <label for="name">Username (email)</label>                                    
                                 </div>                                                              
                                 <div class="form-floating">
-                                    <textarea class="form-control" id="blog_content" name="blog_content" placeholder="Enter blog content..." style="height: 12rem"></textarea>
-                                    <label for="message">Blog Content</label>                                    
-                                </div>
+                                    <input class="form-control" id="password" name="password" type="password" placeholder="Enter Password..."/>
+                                    <label for="name">Password</label>                                    
+                                </div> 
                                 <br />
                                 <!-- Submit Button-->
-                                <button class="btn btn-primary text-uppercase" id="save_post_Button" type="submit">Save Post</button>
+                                <button class="btn btn-primary text-uppercase" id="save_post_Button" type="submit">Login</button>
                                 <a class="btn btn-outline-dark cancel" href="/">Cancel</a>
                             </form>
                         </div>

@@ -1,8 +1,6 @@
 const express = require('express');
-const path = require('path');
 const ejs = require('ejs')
 const mongoose = require('mongoose');
-const BlogPost = require('./models/BlogPost')
 
 const app = express();
 
@@ -61,4 +59,36 @@ app.get('/save_post_confirmation_message',(req,res)=>{
 
 app.get('/create_post_confirmation_message',(req,res)=>{
     res.render('show_confirmation_message', {message: "Post Created Successfully"});              
+});
+
+const register_user_Controller = require('./controllers/register_user');
+app.get('/register_user',register_user_Controller);  
+
+const save_new_user_Controller = require('./controllers/save_new_user');
+app.post('/register_user',save_new_user_Controller); 
+
+app.get('/user_registered_confirmation_message',(req,res)=>{
+    res.render('show_confirmation_message', {message: "User Registered Successfully"});              
+});
+
+const login_user_Controller = require('./controllers/login_user');
+app.get('/login_user',login_user_Controller);  
+
+const check_login_user_Controller = require('./controllers/check_login_user');
+app.post('/login_user',check_login_user_Controller); 
+
+app.get('/user_not_exist_message',(req,res)=>{
+    res.render('show_confirmation_message', {message: "User does not exist. Please Register"});              
+});
+
+app.get('/correct_password_message',(req,res)=>{
+    res.render('show_confirmation_message', {message: "Correct Password"});              
+});
+
+app.get('/wrong_password_message',(req,res)=>{
+    res.render('show_confirmation_message', {message: "Wrong Password"});              
+});
+
+app.get('/user_exists_message',(req,res)=>{
+    res.render('show_confirmation_message', {message: "User already registered"});              
 });
