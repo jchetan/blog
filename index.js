@@ -45,7 +45,7 @@ app.get('/',(req,res)=>{
     */
 })
 
-app.get('/all_posts',(req,res)=>{   
+app.get('/view_all_posts',(req,res)=>{   
     BlogPost.find(
         {},
         (error, blogposts) => {
@@ -64,18 +64,18 @@ app.get('/contact',(req,res)=>{
     res.render('contact');
 })
 
-app.get('/post/:id',(req,res)=>{
+app.get('/view_post/:id',(req,res)=>{
     BlogPost.findById(req.params.id, (error, blogpost) =>{
         res.render('view_post', {blogpost: blogpost});
         console.log(error,blogpost)
     })    
 })
 
-app.get('/posts/new',(req,res)=>{
+app.get('/create_post',(req,res)=>{
     res.render('create_post')
 })
 
-app.post('/posts/store',(req,res)=>{
+app.post('/create_post',(req,res)=>{
     var date_time = new Date();
     BlogPost.create(
         {
@@ -84,7 +84,7 @@ app.post('/posts/store',(req,res)=>{
             date_posted: date_time.toJSON().slice(0,19).replace('T',':'),
             date_updated: date_time.toJSON().slice(0,19).replace('T',':')
         }, (error, blogpost) => {
-            res.redirect('/')
+            res.redirect('/create_post_confirmation_message');
         }
     );    
 })
@@ -112,8 +112,17 @@ app.post(
             },
             (error, blogpost) =>{
                 console.log(error,blogpost)
+                res.redirect('/save_post_confirmation_message');
             }
         ) 
-        res.redirect('/');
+        
     }
 );
+
+app.get('/save_post_confirmation_message',(req,res)=>{
+    res.render('save_post_confirmation_message');              
+});
+
+app.get('/create_post_confirmation_message',(req,res)=>{
+    res.render('create_post_confirmation_message');              
+});
