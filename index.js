@@ -120,9 +120,9 @@ app.post(
 );
 
 app.get('/save_post_confirmation_message',(req,res)=>{
-    res.render('save_post_confirmation_message');              
+    res.render('show_confirmation_message', {message: "Post Saved Successfully"});              
 });
 
 app.get('/create_post_confirmation_message',(req,res)=>{
-    res.render('create_post_confirmation_message');              
+    res.render('show_confirmation_message', {message: "Post Created Successfully"});              
 });
