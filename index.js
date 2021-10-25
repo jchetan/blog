@@ -31,78 +31,29 @@ app.listen(PORT, ()=>{
     console.log("App listening on port 3000")
 })
 
-app.get('/',(req,res)=>{
-    BlogPost.find(
-        {},
-        (error, blogposts) => {
-            console.log(blogposts);
-            res.render('all_posts', {blogposts: blogposts});
-        }
-    );
-})
+const index_page_Controller = require('./controllers/index_page');
+app.get('/',index_page_Controller);
 
-app.get('/about',(req,res)=>{
-    res.render('about');
-})
+const about_page_Controller = require('./controllers/about_page');
+app.get('/about',about_page_Controller);
 
-app.get('/contact',(req,res)=>{
-    res.render('contact');
-})
+const contact_page_Controller = require('./controllers/contact_page');
+app.get('/contact',contact_page_Controller);
 
-app.get('/view_post/:id',(req,res)=>{
-    BlogPost.findById(req.params.id, (error, blogpost) =>{
-        res.render('view_post', {blogpost: blogpost});
-        console.log(error,blogpost)
-    })    
-})
+const view_post_Controller = require('./controllers/view_post');
+app.get('/view_post/:id',view_post_Controller);
 
-app.get('/create_post',(req,res)=>{
-    res.render('create_post')
-})
+const create_post_Controller = require('./controllers/create_post');
+app.get('/create_post',create_post_Controller);
 
-app.post('/create_post',(req,res)=>{
-    var date_time = new Date();
-    BlogPost.create(
-        {
-            title: req.body.blog_title,
-            body: req.body.blog_content,
-            date_posted: date_time.toJSON().slice(0,19).replace('T',':'),
-            date_updated: date_time.toJSON().slice(0,19).replace('T',':')
-        }, (error, blogpost) => {
-            res.redirect('/create_post_confirmation_message');
-        }
-    );    
-})
+const save_new_post_Controller = require('./controllers/save_new_post');
+app.post('/create_post',save_new_post_Controller);
 
-app.get('/edit_post/:id',(req,res)=>{
-    BlogPost.findById(req.params.id, (error, blogpost) =>{
-        res.render('edit_post', {blogpost: blogpost});
-        console.log(error,blogpost)
-    })      
-})
+const edit_post_Controller = require('./controllers/edit_post');
+app.get('/edit_post/:id',edit_post_Controller);
 
-app.post(
-    '/save_post/:id',
-    (req,res)=>{
-        var date_time = new Date();
-        console.log(req.params.id);
-        console.log(req.body.blog_title);
-        console.log(req.body.blog_content);
-        BlogPost.findByIdAndUpdate(
-            req.params.id, 
-            {
-                title: req.body.blog_title,
-                body: req.body.blog_content,
-                date_updated: date_time.toJSON().slice(0,19).replace('T',':')
-            },
-            (error, blogpost) =>{
-                console.log(error,blogpost)
-                res.redirect('/save_post_confirmation_message');
-            }
-        ) 
-        
-    }
-);
+const save_post_Controller = require('./controllers/save_post');
+app.post('/save_post/:id',save_post_Controller);  
 
 app.get('/save_post_confirmation_message',(req,res)=>{
     res.render('show_confirmation_message', {message: "Post Saved Successfully"});              
