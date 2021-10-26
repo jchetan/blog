@@ -19,6 +19,7 @@ app.use(express.urlencoded({extended:true}));
 global.loggedIn = null;
 app.use("*", (req, res, next) => {
     loggedIn = req.session.username;
+    console.log(loggedIn);
     next()
 });
 
@@ -77,8 +78,8 @@ app.get('/create_post_confirmation_message',(req,res)=>{
 const register_user_Controller = require('./controllers/register_user');
 app.get('/register_user',register_user_Controller);  
 
-const save_new_user_Controller = require('./controllers/save_new_user');
-app.post('/register_user',save_new_user_Controller); 
+const save_new_user_Controller = require('./controllers/save_new_user'); 
+app.post('/register_user',save_new_user_Controller);
 
 app.get('/user_registered_confirmation_message',(req,res)=>{
     res.render('show_confirmation_message', {message: "User Registered Successfully"});              
@@ -108,3 +109,6 @@ app.get('/user_exists_message',(req,res)=>{
 
 const logout_user_Controller = require('./controllers/logout_user');
 app.get('/logout_user',logout_user_Controller); 
+
+
+app.use((req, res) => res.render('404error'));

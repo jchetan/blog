@@ -3,6 +3,10 @@ const bcrypt = require('bcryptjs');
 
 module.exports = (req, res) =>{
     var date_time = new Date();
+    //check if email is in correct format and non null
+    //check if password is non null
+    //if there are any errors, update errors variable in session 
+    //Redirect user to register page
     User.findOne(
         {
             username: req.body.username

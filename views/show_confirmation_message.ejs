@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%- include('layouts/header'); -%>  
+    <%- include('layouts/header_new'); -%>  
     <body>
         <!-- Navigation-->
-        <%- include('layouts/navbar'); -%>
-        <!-- Page Header-->
-        <header class="masthead" style="background-image: url('/assets/img/about-bg.jpg')">
-            <div class="container position-relative px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        <div class="site-heading">
-                            <h1><%= message %></h1>                            
+        <%- include('layouts/navbar_new'); -%>      
+
+        <section class="contact-us section bg-gray" id="contact">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="title text-center">                            
+                            <h2><%= message %></h2>
+                            <span class="border"></span>                            
                         </div>
                     </div>
-                </div>
-            </div>
-        </header>     
+                </div>       
+                
+            </div> <!-- end container -->
+        </section> <!-- end section -->
         <!-- Footer-->
-        <%- include('layouts/footer'); -%>
-        <%- include('layouts/scripts'); -%>
+        <%- include('layouts/footer_new'); -%>
+        <%- include('layouts/scripts_new'); -%>
     </body>
 </html>

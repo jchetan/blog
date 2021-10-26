@@ -1,39 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
-    <%- include('layouts/header'); -%>  
-    <body>
-        <!-- Navigation-->
-        <%- include('layouts/navbar'); -%>
-        <!-- Page Header-->
-        <header class="masthead" style="background-image: url('/assets/img/about-bg.jpg')">
-            <div class="container position-relative px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        <div class="post-heading">
-                            <h1><%= blogpost.title %></h1>                            
-                            <p class="post-meta">
-                                First Posted on <%= blogpost.date_posted %>
-                            </p>
-                            <p class="post-meta">
-                                Post updated on <%= blogpost.date_updated %>
-                            </p>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> 
+<html lang="zxx"> <!--<![endif]-->
+<%- include('layouts/header_new'); -%>  
+<body id="body">
+<!--
+Fixed Navigation
+==================================== -->
+<%- include('layouts/navbar_new'); -%>
+
+<section class="blog section" id="blog">
+    <div class="container">
+  
+        <div class="row">                
+            <!-- single blog post -->
+                <article class="col" >
+                    <div class="post-item">
+                        <div class="post-title">
+                            <h3 class="mt-0"><a href=""><%= blogpost.title %></a></h3>
+                        </div>
+                        <div class="post-meta">
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <span>Created: </span> <a href="" class=""><%= blogpost.date_posted %></a>        
+                                </li>
+                                <li class="list-inline-item">
+                                    <span>Updated: </span> <span> <%= blogpost.date_updated %></span>        
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="post-content">
+                            <p><%= blogpost.body %></p>
                         </div>
                     </div>
-                </div>
-            </div>
-        </header>
-        <!-- Post Content-->
-        <article class="mb-4">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        <p><%= blogpost.body %></p>
-                    </div>
-                </div>
-            </div>
-        </article>
-        <!-- Footer-->
-        <%- include('layouts/footer'); -%>
-        <%- include('layouts/scripts'); -%>
-    </body>
+                </article>
+            <!-- end single blog post -->
+            
+        </div> <!-- end row -->
+    </div> <!-- end container -->
+</section> <!-- end section -->
+
+
+       
+<%- include('layouts/footer_new'); -%>
+<%- include('layouts/scripts_new'); -%>
+</body>
 </html>

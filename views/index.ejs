@@ -1,50 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
-    <%- include('layouts/header'); -%>  
-    <body>
-        <!-- Navigation-->
-        <%- include('layouts/navbar'); -%>
-        <!-- Page Header-->
-        <header class="masthead" style="background-image: url('assets/img/about-bg.jpg')">
-            <div class="container position-relative px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        <div class="site-heading">
-                            <h1>View All Posts</h1>                            
-                        </div>
-                    </div>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> 
+<html lang="zxx"> <!--<![endif]-->
+<%- include('layouts/header_new'); -%>  
+<body id="body">
+
+<!--
+Fixed Navigation
+==================================== -->
+<%- include('layouts/navbar_new'); -%>
+
+<!--
+Start About Section
+==================================== -->
+<section class="about-2 section bg-gray" id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-6 align-self-center mb-4 mb-md-0">
+                <div class="align-self-center">
+                    <h2>A New Kind of Digital Currency to change the world what we think</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae deleniti ipsa labore necessitatibus culpa veritatis quo accusantium, neque enim ea ad eaque iure, quas tempore velit, quibusdam dolor illo! Explicabo.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid quisquam maiores iste soluta, nihil dolorem?</p>                   
                 </div>
-            </div>
-        </header>
-        <!-- Main Content-->
-        <div class="container px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-md-10 col-lg-8 col-xl-7">
-                    <!-- Post preview-->
-                    <% for (var i = 0; i < blogposts.length; i++) { %>
-                    <div class="post-preview">
-                        <a href="/view_post/<%= blogposts[i]._id %>">
-                            <h2 class="post-title"><%= blogposts[i].title %></h2>
-                            <p class="post-meta">
-                                First Posted on <%= blogposts[i].date_posted %>
-                            </p>
-                            <p class="post-meta">
-                                Post Updated on <%= blogposts[i].date_updated %>
-                            </p>
-                            <% if (loggedIn) { %>
-                                <div class="d-flex mb-4"><a class="btn btn-primary text-uppercase" href="/edit_post/<%= blogposts[i]._id %>">Edit Post</a></div>
-                            <% } %> 
-                            
-                        </a>                        
-                    </div>
-                    <!-- Divider-->
-                    <hr class="my-4" />
-                    <% } %>                    
-                </div>
-            </div>
+            </div>	
         </div>
-        <!-- Footer-->
-        <%- include('layouts/footer'); -%>
-        <%- include('layouts/scripts'); -%>
-    </body>
+    </div>
+</section>
+
+<!-- Start Testimonial
+=========================================== -->
+		
+    <section class="testimonial section" id="testimonial">
+        <div class="container">
+            <div class="row">				
+                <div class="col-lg-12">
+                    <!-- testimonial wrapper -->
+                    <div class="testimonial-slider">
+                        <% for (var i = 0; i < blogposts.length; i++) { %>
+                        <!-- testimonial single -->
+                        <div class="item">
+                            <div class="block">                             
+                                <div class="post-preview">
+                                    <a href="/view_post/<%= blogposts[i]._id %>">
+                                        <h2 class="post-title text-dark"><%= blogposts[i].title %></h2>
+                                        <p class="post-meta">
+                                            First Posted on <%= blogposts[i].date_posted %>
+                                        </p>
+                                        <p class="post-meta">
+                                            Post Updated on <%= blogposts[i].date_updated %>
+                                        </p>
+                                        <% if (loggedIn) { %>
+                                            <div class="d-flex mb-4"><a class="btn btn-primary text-uppercase" href="/edit_post/<%= blogposts[i]._id %>">Edit Post</a></div>
+                                        <% } %>                             
+                                    </a>                        
+                                </div>                           						
+                            </div>
+                        </div>  
+                        <% } %>  
+                    </div>
+                </div> 		<!-- end col lg 12 -->
+            </div>	    <!-- End row -->
+        </div>       <!-- End container -->
+    </section>    <!-- End Section -->        
+    <%- include('layouts/footer_new'); -%>
+    <%- include('layouts/scripts_new'); -%>
+</body>
 </html>
