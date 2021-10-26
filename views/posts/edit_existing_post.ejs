@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%- include('layouts/header_new'); -%>  
+    <%- include('../layouts/header_new'); -%>  
     <body>
         <!-- Navigation-->
-        <%- include('layouts/navbar_new'); -%>
+        <%- include('../layouts/navbar_new'); -%>
         <!-- new content-->
 
         <section class="contact-us section bg-gray" id="contact">
@@ -19,7 +19,7 @@
                 <div class="row">
                     <!-- Contact Form -->
                     <div class="contact-form col-12 col-md-6  mx-auto" >
-                        <form id="contact-form" action="/save_post/<%= blogpost._id %>" method="POST" role="form">
+                        <form id="contact-form" action="/posts/save_existing_post/<%= blogpost._id %>" method="POST" role="form">
                         
                             <div class="form-group">
                                 <input class="form-control" id="blog_title" name="blog_title" type="text" value="<%= blogpost.title%>">
@@ -44,7 +44,7 @@
         <!-- new content-->
 
         <!-- Footer-->
-        <%- include('layouts/footer_new'); -%>
-        <%- include('layouts/scripts_new'); -%>
+        <%- include('../layouts/footer_new'); -%>
+        <%- include('../layouts/scripts_new'); -%>
     </body>
 </html>

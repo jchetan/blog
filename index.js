@@ -43,29 +43,15 @@ app.listen(PORT, ()=>{
     console.log("App listening on port 3000")
 })
 
-const index_page_Controller = require('./controllers/index_page');
-app.get('/',index_page_Controller);
+var indexRouter = require('./routes/index');
+var postsRouter = require('./routes/posts');
+var usersRouter = require('./routes/users');
+var static_pagesRouter = require('./routes/static_pages');
 
-const about_page_Controller = require('./controllers/about_page');
-app.get('/about',about_page_Controller);
-
-const contact_page_Controller = require('./controllers/contact_page');
-app.get('/contact',contact_page_Controller);
-
-const view_post_Controller = require('./controllers/view_post');
-app.get('/view_post/:id',view_post_Controller);
-
-const create_post_Controller = require('./controllers/create_post');
-app.get('/create_post',create_post_Controller);
-
-const save_new_post_Controller = require('./controllers/save_new_post');
-app.post('/create_post',save_new_post_Controller);
-
-const edit_post_Controller = require('./controllers/edit_post');
-app.get('/edit_post/:id',edit_post_Controller);
-
-const save_post_Controller = require('./controllers/save_post');
-app.post('/save_post/:id',save_post_Controller);  
+app.use('/', indexRouter);
+app.use('/posts', postsRouter);
+app.use('/users', usersRouter);
+app.use('/static_pages', static_pagesRouter);
 
 app.get('/save_post_confirmation_message',(req,res)=>{
     res.render('show_confirmation_message', {message: "Post Saved Successfully"});              
@@ -75,21 +61,9 @@ app.get('/create_post_confirmation_message',(req,res)=>{
     res.render('show_confirmation_message', {message: "Post Created Successfully"});              
 });
 
-const register_user_Controller = require('./controllers/register_user');
-app.get('/register_user',register_user_Controller);  
-
-const save_new_user_Controller = require('./controllers/save_new_user'); 
-app.post('/register_user',save_new_user_Controller);
-
 app.get('/user_registered_confirmation_message',(req,res)=>{
     res.render('show_confirmation_message', {message: "User Registered Successfully"});              
 });
-
-const login_user_Controller = require('./controllers/login_user');
-app.get('/login_user',login_user_Controller);  
-
-const check_login_user_Controller = require('./controllers/check_login_user');
-app.post('/login_user',check_login_user_Controller); 
 
 app.get('/user_not_exist_message',(req,res)=>{
     res.render('show_confirmation_message', {message: "User does not exist. Please Register"});              
@@ -106,9 +80,5 @@ app.get('/wrong_password_message',(req,res)=>{
 app.get('/user_exists_message',(req,res)=>{
     res.render('show_confirmation_message', {message: "User already registered"});              
 });
-
-const logout_user_Controller = require('./controllers/logout_user');
-app.get('/logout_user',logout_user_Controller); 
-
 
 app.use((req, res) => res.render('404error'));

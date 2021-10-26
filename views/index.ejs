@@ -20,9 +20,7 @@ Start About Section
         <div class="row">
             <div class="col-12 col-md-6 align-self-center mb-4 mb-md-0">
                 <div class="align-self-center">
-                    <h2>A New Kind of Digital Currency to change the world what we think</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae deleniti ipsa labore necessitatibus culpa veritatis quo accusantium, neque enim ea ad eaque iure, quas tempore velit, quibusdam dolor illo! Explicabo.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid quisquam maiores iste soluta, nihil dolorem?</p>                   
+                    <h2>A New Kind of Film Blog</h2>
                 </div>
             </div>	
         </div>
@@ -43,7 +41,7 @@ Start About Section
                         <div class="item">
                             <div class="block">                             
                                 <div class="post-preview">
-                                    <a href="/view_post/<%= blogposts[i]._id %>">
+                                    <a href="/posts/view_post/<%= blogposts[i]._id %>">
                                         <h2 class="post-title text-dark"><%= blogposts[i].title %></h2>
                                         <p class="post-meta">
                                             First Posted on <%= blogposts[i].date_posted %>
@@ -52,7 +50,7 @@ Start About Section
                                             Post Updated on <%= blogposts[i].date_updated %>
                                         </p>
                                         <% if (loggedIn) { %>
-                                            <div class="d-flex mb-4"><a class="btn btn-primary text-uppercase" href="/edit_post/<%= blogposts[i]._id %>">Edit Post</a></div>
+                                            <div class="d-flex mb-4"><a class="btn btn-primary text-uppercase" href="/posts/edit_existing_post/<%= blogposts[i]._id %>">Edit Post</a></div>
                                         <% } %>                             
                                     </a>                        
                                 </div>                           						

@@ -13,23 +13,23 @@
                         <ul class="navbar-nav ml-auto">
                             <% if (loggedIn) { %>
                             <li class="nav-item">
-                                <a class="nav-link" href="create_post">New Post</a>
+                                <a class="nav-link" href="/posts/create_new_post">New Post</a>
                             </li>
                             <% } %>
                             <li class="nav-item">
-                                <a class="nav-link" href="about">About</a>
+                                <a class="nav-link" href="/static_pages/about">About</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="contact">Contact</a>
+                                <a class="nav-link" href="/static_pages/contact">Contact</a>
                             </li>
                             <% if (!loggedIn) { %>
                             <li class="nav-item">
-                                <a class="nav-link" href="login_user">Login/Register</a>
+                                <a class="nav-link" href="/users/login_user">Login/Register</a>
                             </li>                            
                             <% } %>
                             <% if (loggedIn) { %>
                             <li class="nav-item">
-                                <a class="nav-link" href="logout_user">Sign Out</a>
+                                <a class="nav-link" href="/users/logout_user">Sign Out</a>
                             </li>       
                             <% } %>  
                         </ul>
