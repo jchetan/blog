@@ -3,7 +3,6 @@ const ejs = require('ejs')
 const mongoose = require('mongoose');
 const session = require('express-session');
 
-
 const app = express();
 
 app.set('view engine','ejs');
@@ -16,6 +15,12 @@ app.use(session({
 app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
+
+global.loggedIn = null;
+app.use("*", (req, res, next) => {
+    loggedIn = req.session.username;
+    next()
+});
 
 
 mongoose.connect(
