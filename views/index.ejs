@@ -31,7 +31,10 @@
                             <p class="post-meta">
                                 Post Updated on <%= blogposts[i].date_updated %>
                             </p>
-                            <div class="d-flex mb-4"><a class="btn btn-primary text-uppercase" href="/edit_post/<%= blogposts[i]._id %>">Edit Post</a></div>
+                            <% if (loggedIn) { %>
+                                <div class="d-flex mb-4"><a class="btn btn-primary text-uppercase" href="/edit_post/<%= blogposts[i]._id %>">Edit Post</a></div>
+                            <% } %> 
+                            
                         </a>                        
                     </div>
                     <!-- Divider-->
