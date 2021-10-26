@@ -9,13 +9,12 @@ module.exports = (req, res) =>{
             username: req.body.username
         },
         function (err, user) {
-            if (user) {
-                console.log("user exists");
-                console.log(user);               
-                console.log(req.body.password);
-                const result = bcrypt.compareSync(req.body.password, user.password) 
-                console.log(result);
-                if (result) {
+            if (user) {                
+                const result = bcrypt.compareSync(req.body.password, user.password)                 
+                if (result) {                    
+                    req.session.username = user.username;
+                    req.session.save();
+                    console.log(req.session);
                     res.redirect('/correct_password_message');
                 } else {
                     res.redirect('/wrong_password_message');

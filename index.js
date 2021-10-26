@@ -1,14 +1,22 @@
 const express = require('express');
 const ejs = require('ejs')
 const mongoose = require('mongoose');
+const session = require('express-session');
+
 
 const app = express();
 
 app.set('view engine','ejs');
 
+app.use(session({
+    secret: 'kjhkhgkjhgkjhgkjgkjh',
+    resave: false,
+    saveUninitialized: true    
+}));
 app.use(express.static('public'));
-app.use(express.json())
-app.use(express.urlencoded({extended:true}))
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+
 
 mongoose.connect(
     'mongodb+srv://jchetan:vatja123@cluster0.sgaf5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', 
@@ -92,3 +100,6 @@ app.get('/wrong_password_message',(req,res)=>{
 app.get('/user_exists_message',(req,res)=>{
     res.render('show_confirmation_message', {message: "User already registered"});              
 });
+
+const logout_user_Controller = require('./controllers/logout_user');
+app.get('/logout_user',logout_user_Controller); 
