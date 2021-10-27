@@ -11,7 +11,7 @@ exports.view_all_posts = function (req, res) {
 
 exports.view_post = function (req, res) {
     BlogPost.findById(req.params.id, (error, blogpost) =>{
-        res.render('posts/view_post', {blogpost: blogpost});     
+        res.render('posts/view_post', {blogpost: blogpost});
     });
 }
 

@@ -12,9 +12,11 @@ Fixed Navigation
 ==================================== -->
 <%- include('layouts/navbar_new'); -%>
 
-<!--
-Start About Section
-==================================== -->
+<div class="alert alert-warning alert-dismissible" role="alert">
+    <span type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></span>
+    Custom Message, to be configured
+</div>
+
 <section class="about-2 section bg-gray" id="about">
     <div class="container">
         <div class="row">
@@ -30,39 +32,39 @@ Start About Section
 <!-- Start Testimonial
 =========================================== -->
 		
-    <section class="testimonial section" id="testimonial">
-        <div class="container">
-            <div class="row">				
-                <div class="col-lg-12">
-                    <!-- testimonial wrapper -->
-                    <div class="testimonial-slider">
-                        <% for (var i = 0; i < blogposts.length; i++) { %>
-                        <!-- testimonial single -->
-                        <div class="item">
-                            <div class="block">                             
-                                <div class="post-preview">
-                                    <a href="/posts/view_post/<%= blogposts[i]._id %>">
-                                        <h2 class="post-title text-dark"><%= blogposts[i].title %></h2>
-                                        <p class="post-meta">
-                                            First Posted on <%= blogposts[i].date_posted %>
-                                        </p>
-                                        <p class="post-meta">
-                                            Post Updated on <%= blogposts[i].date_updated %>
-                                        </p>
-                                        <% if (loggedIn) { %>
-                                            <div class="d-flex mb-4"><a class="btn btn-primary text-uppercase" href="/posts/edit_existing_post/<%= blogposts[i]._id %>">Edit Post</a></div>
-                                        <% } %>                             
-                                    </a>                        
-                                </div>                           						
+<section class="testimonial section" id="testimonial">
+    <div class="container">
+        <div class="row">				
+            <div class="col-lg-12">
+                <!-- testimonial wrapper -->
+                <div class="testimonial-slider">
+                    <% for (var i = 0; i < blogposts.length; i++) { %>
+                    <!-- testimonial single -->
+                    <div class="item">
+                        <div class="block">                             
+                            <div class="post-preview">
+                                <a href="/posts/view_post/<%= blogposts[i]._id %>">
+                                    <h2 class="post-title text-dark"><%= blogposts[i].title %></h2>
+                                    <p class="post-meta">
+                                        First Posted on <%= blogposts[i].date_posted %>
+                                    </p>
+                                    <p class="post-meta">
+                                        Post Updated on <%= blogposts[i].date_updated %>
+                                    </p>
+                                    <% if (loggedIn) { %>
+                                        <div class="d-flex mb-4"><a class="btn btn-primary text-uppercase" href="/posts/edit_existing_post/<%= blogposts[i]._id %>">Edit Post</a></div>
+                                    <% } %>                             
+                                </a>
                             </div>
-                        </div>  
-                        <% } %>  
+                        </div>
                     </div>
-                </div> 		<!-- end col lg 12 -->
-            </div>	    <!-- End row -->
-        </div>       <!-- End container -->
-    </section>    <!-- End Section -->        
-    <%- include('layouts/footer_new'); -%>
-    <%- include('layouts/scripts_new'); -%>
+                    <% } %>
+                </div>
+            </div> 		<!-- end col lg 12 -->
+        </div>	    <!-- End row -->
+    </div>       <!-- End container -->
+</section>    <!-- End Section -->        
+<%- include('layouts/footer_new'); -%>
+<%- include('layouts/scripts_new'); -%>
 </body>
 </html>

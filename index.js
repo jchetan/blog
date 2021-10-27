@@ -8,6 +8,7 @@ const app = express();
 app.set('view engine','ejs');
 
 app.use(session({
+    cookie: { maxAge: 60000 },
     secret: 'kjhkhgkjhgkjhgkjgkjh',
     resave: false,
     saveUninitialized: true    
@@ -62,23 +63,11 @@ app.get('/create_post_confirmation_message',(req,res)=>{
 });
 
 app.get('/user_registered_confirmation_message',(req,res)=>{
-    res.render('show_confirmation_message', {message: "User Registered Successfully"});              
-});
-
-app.get('/user_not_exist_message',(req,res)=>{
-    res.render('show_confirmation_message', {message: "User does not exist. Please Register"});              
+    res.render('show_confirmation_message', {message: "New User Registered Successfully"});              
 });
 
 app.get('/correct_password_message',(req,res)=>{
-    res.render('show_confirmation_message', {message: "Correct Password"});              
+    res.render('show_confirmation_message', {message: "Logged in Successfully"});              
 });
 
-app.get('/wrong_password_message',(req,res)=>{
-    res.render('show_confirmation_message', {message: "Wrong Password"});              
-});
-
-app.get('/user_exists_message',(req,res)=>{
-    res.render('show_confirmation_message', {message: "User already registered"});              
-});
-
-app.use((req, res) => res.render('404error'));
+app.use((req, res) => res.render('static_pages/404error'));

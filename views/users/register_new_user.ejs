@@ -13,12 +13,21 @@
                   <div class="block text-center">
                     <h2 class="text-center">Register</h2>
                     <form class="text-left clearfix mt-30" action="/users/save_new_user" method="POST">
-                   
+                      <% if (locals.errors) { %>
+                        <% for (var i = 0; i < errors.length; i++) { %>
+                        <div class="alert alert-primary" role="alert">
+                            <%= errors[i].msg %>
+                        </div>
+                        <% } %>
+                      <% } %> 
                       <div class="form-group">
-                        <input type="email" class="form-control"  placeholder="Email" id="username" name="username">
+                        <input type="text" class="form-control"  placeholder="Username (Email)" id="username" name="username">
                       </div>
                       <div class="form-group">
                         <input type="password" class="form-control"  placeholder="Password" id="password" name="password">
+                      </div>
+                      <div class="form-group">
+                        <input type="password" class="form-control"  placeholder="Confirm Password" id="confirm_password" name="confirm_password">
                       </div>
                       <button type="submit" class="btn btn-main text-center">Sign In</button>
                     </form>
