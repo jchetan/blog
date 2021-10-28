@@ -54,10 +54,6 @@ app.use('/posts', postsRouter);
 app.use('/users', usersRouter);
 app.use('/static_pages', static_pagesRouter);
 
-app.get('/logged_out',(req,res)=>{
-    res.render('show_confirmation_message', {message: "Logged out Successfully"});              
-});
-
 app.get('/user_registered_confirmation_message',(req,res)=>{
     res.render('show_confirmation_message', {message: "New User Registered Successfully"});              
 });

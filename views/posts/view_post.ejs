@@ -38,11 +38,13 @@
                             <section class="mb-5">
                                 <p class="fs-5 mb-4"><%= blogpost.body %></p>                                
                             </section>
+                            <% if (loggedIn) { %>
                             <section class="mb-5">
                                 <a class="btn btn-primary text-uppercase" href="/posts/edit_existing_post/<%= blogpost._id %>">
                                     Edit Post
                                 </a>                            
                             </section>
+                            <% } %>
                         </article>                 
                     </div>
                 </div>

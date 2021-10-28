@@ -50,7 +50,8 @@ exports.save_new_user = [
                                 password: hashedPassword,
                                 date_account_created: date_time.toJSON().slice(0,19).replace('T',':'),                
                             }, (error, blogpost) => {
-                                res.redirect('/user_registered_confirmation_message');
+                                req.session.userMessage ='User Registered Successfully';
+                                res.redirect('/users/login_user');
                             }
                         ); 
                     }
@@ -63,7 +64,10 @@ exports.save_new_user = [
 
 
 exports.login_user = function (req, res) {
-    res.render('users/login_user');
+    var userMessage = req.session.userMessage;
+    req.session.userMessage = null;        
+    console.log(userMessage);
+    res.render('users/login_user', {userMessage : userMessage});
 }
 
 exports.validate_login_user = [
@@ -96,8 +100,6 @@ exports.validate_login_user = [
                         const result = bcrypt.compareSync(req.body.password, user.password)                 
                         if (result) {                    
                             req.session.username = user.username;
-                            req.session.save();
-                            console.log(req.session);
                             res.redirect('/correct_password_message');
                         } else {
                             var err = [{msg: "Incorrect Password, please try again"}];
@@ -116,7 +118,7 @@ exports.validate_login_user = [
 ];
 
 exports.logout_user = function (req, res) {
-    req.session.destroy(() =>{
-        res.redirect('/logged_out')
+    req.session.destroy(() =>{        
+        res.redirect('/users/login_user')
     })
 }
