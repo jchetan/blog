@@ -1,48 +1,44 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <%- include('../layouts/header_new'); -%>  
-    <body>
+<%- include('../layouts/header_new'); -%>  
+<body>
+    <main class="flex-shrink-0">
         <!-- Navigation-->
         <%- include('../layouts/navbar_new'); -%>
-
-        <!-- New content-->
-        <section class="contact-us section bg-gray" id="contact">
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <div class="title text-center">                            
-                            <h2>Create a new Post</h2>
-                            <span class="border"></span>                            
+        <!-- Page content-->
+        <section class="py-5">
+            <div class="container px-5">
+                <!-- Contact form-->
+                <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
+                    <div class="text-center mb-5">                        
+                        <h1 class="fw-bolder">Create new Post</h1>                        
+                    </div>
+                    <div class="row gx-5 justify-content-center">
+                        <div class="col-lg-8 col-xl-6">                         
+                            <form method="post" action="/posts/save_new_post">
+                                <!-- Blog Title input-->
+                                <div class="form-floating mb-3">     
+                                    
+                                    <input class="form-control" id="blog_title" name="blog_title" type="text" placeholder="Username"/>
+                                    <label for="blog_title">Blog Title</label>                                    
+                                </div>
+                                <!-- Blog Content input-->
+                                <div class="form-floating mb-3">   
+                                    <div class="form-group">
+                                        <textarea rows="6" placeholder="Blog Content" class="form-control" id="blog_content" name="blog_content"></textarea>	
+                                    </div>                                                                                                       
+                                </div>                                
+                                <!-- Submit Button-->
+                                <div class="d-grid"><button class="btn btn-primary btn-lg" id="submitButton" type="submit">Create Post</button></div>
+                            </form>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <!-- Contact Form -->
-                    <div class="contact-form col-12 col-md-6  mx-auto" >
-                        <form id="contact-form" method="post" action="/posts/save_new_post" role="form">
-                        
-                            <div class="form-group">
-                                <input type="text" placeholder="Blog Title" class="form-control" id="blog_title" name="blog_title">
-                            </div>
-                            
-                            <div class="form-group">
-                                <textarea rows="6" placeholder="Blog Content" class="form-control" id="blog_content" name="blog_content"></textarea>	
-                            </div>
-                                                                                    
-                            <div id="cf-submit">
-                                <input type="submit" id="save_post_Button" class="btn btn-transparent" value="Save Post">
-                            </div>						
-                            
-                        </form>
-                    </div>
-                    <!-- ./End Contact Form -->
-                </div> <!-- end row -->
-                
-            </div> <!-- end container -->
-        </section> <!-- end section -->
-        <!-- New content-->
-        <!-- Footer-->
-        <%- include('../layouts/footer_new'); -%>
-        <%- include('../layouts/scripts_new'); -%>
-    </body>
+                </div>            
+            </div>
+        </section>
+    </main>
+    <!-- Footer-->
+    <%- include('../layouts/footer_new'); -%>
+    <%- include('../layouts/scripts_new'); -%>
+</body>
 </html>

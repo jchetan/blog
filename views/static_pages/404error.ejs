@@ -1,20 +1,28 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <%- include('../layouts/header_new'); -%>  
-    <body>
-        <section class="page-404 section text-center">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1>404</h1>
-                        <h2>Page Not Found</h2>
-                          <p>Sorry, but the page you were trying to view does not exist.</p>
-                        <a href="/" class="btn btn-main mt-20">Go Home</a>
+<%- include('../layouts/header_new'); -%>  
+<body class="d-flex flex-column h-100">
+    <main class="flex-shrink-0">
+
+        <!-- Header section-->
+        <div class="py-5 bg-light">
+            <div class="container px-5 my-5">
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-10 col-xl-7">
+                        <div class="text-center">
+                            <h1>404</h1>
+                            <h2>Page Not Found</h2>
+                            <div class="fs-4 mb-4 fst-italic">Sorry, but the page you were trying to view does not exist</div>
+                            <a href="/" class="btn btn-primary mt-20">Go Home</a>    
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>    
-        
+        </div>       
+    </main>        
+    <%- include('../layouts/footer_new'); -%>
+     
+    
     <%- include('../layouts/scripts_new'); -%>
-    </body>
+</body>
 </html>

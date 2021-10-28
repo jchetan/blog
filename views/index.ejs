@@ -1,70 +1,60 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> 
-<html lang="zxx"> <!--<![endif]-->
+<!doctype html>
+<html lang="en">
 <%- include('layouts/header_new'); -%>  
-<body id="body">
-
-<!--
-Fixed Navigation
-==================================== -->
-<%- include('layouts/navbar_new'); -%>
-
-<div class="alert alert-warning alert-dismissible" role="alert">
-    <span type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></span>
-    Custom Message, to be configured
-</div>
-
-<section class="about-2 section bg-gray" id="about">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-md-6 align-self-center mb-4 mb-md-0">
-                <div class="align-self-center">
-                    <h2>A New Kind of Film Blog</h2>
+<body class="d-flex flex-column h-100">
+    <main class="flex-shrink-0">
+        <!-- Navigation-->
+        <%- include('layouts/navbar_new'); -%>
+        <!-- Header section-->
+        <div class="py-5 bg-light">
+            <div class="container px-5 my-5">
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-10 col-xl-7">
+                        <div class="text-center">
+                            <div class="fs-4 mb-4 fst-italic">"Working with Start Bootstrap templates has saved me tons of development time when building new projects! Starting with a Bootstrap template just makes things easier!"</div>
+                            
+                        </div>
+                    </div>
                 </div>
-            </div>	
+            </div>
         </div>
-    </div>
-</section>
-
-<!-- Start Testimonial
-=========================================== -->
-		
-<section class="testimonial section" id="testimonial">
-    <div class="container">
-        <div class="row">				
-            <div class="col-lg-12">
-                <!-- testimonial wrapper -->
-                <div class="testimonial-slider">
+        <!-- Blog preview section-->
+        <section class="py-5">
+            <div class="container px-5 my-5">
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-8 col-xl-6">
+                        <div class="text-center">
+                            <h2 class="fw-bolder">From our blog</h2>
+                            <p class="lead fw-normal text-muted mb-5">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque fugit ratione dicta mollitia. Officiis ad.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row gx-5">
                     <% for (var i = 0; i < blogposts.length; i++) { %>
-                    <!-- testimonial single -->
-                    <div class="item">
-                        <div class="block">                             
-                            <div class="post-preview">
-                                <a href="/posts/view_post/<%= blogposts[i]._id %>">
-                                    <h2 class="post-title text-dark"><%= blogposts[i].title %></h2>
-                                    <p class="post-meta">
-                                        First Posted on <%= blogposts[i].date_posted %>
-                                    </p>
-                                    <p class="post-meta">
-                                        Post Updated on <%= blogposts[i].date_updated %>
-                                    </p>
-                                    <% if (loggedIn) { %>
-                                        <div class="d-flex mb-4"><a class="btn btn-primary text-uppercase" href="/posts/edit_existing_post/<%= blogposts[i]._id %>">Edit Post</a></div>
-                                    <% } %>                             
-                                </a>
+                    <div class="col-lg-4 mb-5">
+                        <div class="card h-100 shadow border-0">                            
+                            <div class="card-body p-4">                                
+                                <a class="text-decoration-none link-dark stretched-link" href="/posts/view_post/<%= blogposts[i]._id %>"><h5 class="card-title mb-3"><%= blogposts[i].title %></h5></a>
                             </div>
+                            <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                                <div class="d-flex align-items-end justify-content-between">
+                                    <div class="d-flex align-items-center">                                        
+                                        <div class="small">
+                                            <div class="text-muted">First Posted on <%= blogposts[i].date_posted %></div>
+                                            <div class="text-muted">Post Updated on <%= blogposts[i].date_updated %></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                            
                         </div>
                     </div>
                     <% } %>
-                </div>
-            </div> 		<!-- end col lg 12 -->
-        </div>	    <!-- End row -->
-    </div>       <!-- End container -->
-</section>    <!-- End Section -->        
-<%- include('layouts/footer_new'); -%>
-<%- include('layouts/scripts_new'); -%>
+                </div>                   
+            </div>
+        </section>
+    </main>
+    <!-- Footer-->
+    <%- include('layouts/footer_new'); -%>
+    <%- include('layouts/scripts_new'); -%>
 </body>
 </html>

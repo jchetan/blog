@@ -1,43 +1,49 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <%- include('../layouts/header_new'); -%>  
-<body>
-<!-- Navigation-->
-<%- include('../layouts/navbar_new'); -%>
-    
-<!-- New content-->
-<section class="signin-page account">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 mx-auto">
-                <div class="block">
-                    <h2 class="text-center">Login</h2>
-                    <form class="text-left clearfix mt-50" action="/users/validate_login_user" method="POST">
-                        <% if (locals.errors) { %>
-                            <% for (var i = 0; i < errors.length; i++) { %>
-                            <div class="alert alert-primary" role="alert">
-                                <%= errors[i].msg %>
-                            </div>
-                            <% } %>
-                        <% } %>                                
-                        <div class="form-group">
-                            <input type="text" class="form-control"  placeholder="Username" id="username" name="username">
-                        </div>                                
-                        <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Password" id="password" name="password">
-                        </div>                    
-                        <button type="submit" class="btn btn-main" >Sign In</button>                                
-                    </form>
-                    <p class="mt-20">New in this site?<a href="/users/register_new_user"> Register</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- New content-->
+<body class="d-flex flex-column">
 
-<!-- Footer-->
-<%- include('../layouts/footer_new'); -%>
-<%- include('../layouts/scripts_new'); -%>
+    <main class="flex-shrink-0">
+        <!-- Navigation-->
+        <%- include('../layouts/navbar_new'); -%>
+        <!-- Page content-->
+        <section class="py-5">
+            <div class="container px-5">
+                <!-- Contact form-->
+                <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
+                    <div class="text-center mb-5">                        
+                        <h1 class="fw-bolder">Login</h1>                        
+                    </div>
+                    <div class="row gx-5 justify-content-center">
+                        <div class="col-lg-8 col-xl-6">
+                            <% if (locals.errors) { %>
+                                <% for (var i = 0; i < errors.length; i++) { %>
+                                <div class="alert alert-primary" role="alert">
+                                    <%= errors[i].msg %>
+                                </div>
+                                <% } %>
+                            <% } %> 
+                            <form id="contactForm" action="/users/validate_login_user" method="POST">
+                                <!-- Username input-->
+                                <div class="form-floating mb-3">                                    
+                                    <input class="form-control" id="username" name="username" type="text" placeholder="Username"/>
+                                    <label for="username">Username</label>                                    
+                                </div>
+                                <!-- Password input-->
+                                <div class="form-floating mb-3">                                    
+                                    <input class="form-control" id="password" name="password" type="password" placeholder="Password"  />
+                                    <label for="password">Password</label>                                    
+                                </div>                                
+                                <!-- Submit Button-->
+                                <div class="d-grid"><button class="btn btn-primary btn-lg" id="submitButton" type="submit">Submit</button></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>            
+            </div>
+        </section>
+    </main>
+    <%- include('../layouts/footer_new'); -%>
+    <%- include('../layouts/scripts_new'); -%>
 </body>
 </html>

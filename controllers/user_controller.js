@@ -117,6 +117,6 @@ exports.validate_login_user = [
 
 exports.logout_user = function (req, res) {
     req.session.destroy(() =>{
-        res.redirect('/')
+        res.redirect('/logged_out')
     })
 }

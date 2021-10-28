@@ -62,6 +62,10 @@ app.get('/create_post_confirmation_message',(req,res)=>{
     res.render('show_confirmation_message', {message: "Post Created Successfully"});              
 });
 
+app.get('/logged_out',(req,res)=>{
+    res.render('show_confirmation_message', {message: "Logged out Successfully"});              
+});
+
 app.get('/user_registered_confirmation_message',(req,res)=>{
     res.render('show_confirmation_message', {message: "New User Registered Successfully"});              
 });
