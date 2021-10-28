@@ -50,7 +50,7 @@ exports.save_new_user = [
                                 password: hashedPassword,
                                 date_account_created: date_time.toJSON().slice(0,19).replace('T',':'),                
                             }, (error, blogpost) => {
-                                req.session.userMessage ='User Registered Successfully';
+                                req.app.userMessage ='User Registered Successfully';
                                 res.redirect('/users/login_user');
                             }
                         ); 
@@ -61,16 +61,16 @@ exports.save_new_user = [
     }
 ];
 
-
-
 exports.login_user = function (req, res) {
-    var userMessage = req.session.userMessage;
-    req.session.userMessage = null;        
+    var userMessage = req.app.userMessage;
+    req.app.userMessage = null;
+    //req.session.userMessage = null;
     console.log(userMessage);
-    if (req.session.destroySession) {
-        req.session.destroy();
-    }
-    res.render('users/login_user', {userMessage : userMessage});
+    //if (req.session.destroySession) {
+    //    req.session.username = null;
+    //    req.session.destroy();
+    //}
+    res.render('users/login_user', {userMessage: userMessage});
 }
 
 exports.validate_login_user = [
@@ -103,7 +103,7 @@ exports.validate_login_user = [
                         const result = bcrypt.compareSync(req.body.password, user.password)                 
                         if (result) {                    
                             req.session.username = user.username;
-                            req.session.userMessage ='Logged in Successfully';
+                            req.app.userMessage ='Logged in Successfully';
                             res.redirect('/');
                         } else {
                             var err = [{msg: "Incorrect Password, please try again"}];
@@ -122,7 +122,9 @@ exports.validate_login_user = [
 ];
 
 exports.logout_user = function (req, res) {
-        req.session.userMessage ='Logged out Successfully';
-        req.session.destroySession = true;
-        res.redirect('/users/login_user');    
+    //req.session.userMessage ='Logged out Successfully';
+    //req.session.destroySession = true;
+    req.session.destroy();
+    req.app.userMessage = 'Logged out Successfully';
+    res.redirect('/users/login_user');    
 }

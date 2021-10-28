@@ -4,8 +4,8 @@ exports.view_all_posts = function (req, res) {
     BlogPost.find(
         {},
         (error, blogposts) => {
-            var userMessage = req.session.userMessage;
-            req.session.userMessage = null;        
+            var userMessage = req.app.userMessage;
+            req.app.userMessage = null;        
             console.log(userMessage);
             res.render('index', {blogposts: blogposts, userMessage: userMessage});
         }
@@ -14,8 +14,8 @@ exports.view_all_posts = function (req, res) {
 
 exports.view_post = function (req, res) {
     BlogPost.findById(req.params.id, (error, blogpost) =>{
-        var userMessage = req.session.userMessage;
-        req.session.userMessage = null;        
+        var userMessage = req.app.userMessage;
+        req.app.userMessage = null;        
         console.log(userMessage);
         res.render('posts/view_post', {blogpost: blogpost, userMessage : userMessage});
     });
@@ -37,7 +37,7 @@ exports.save_new_post = function (req, res) {
             date_posted: date_time.toJSON().slice(0,19).replace('T',':'),
             date_updated: date_time.toJSON().slice(0,19).replace('T',':')
         }, (error, blogpost) => {
-            req.session.userMessage ='Post Saved Successfully';
+            req.app.userMessage ='Post Saved Successfully';
             res.redirect('/posts/view_post/'+blogpost._id);
         }
     );  
@@ -63,7 +63,7 @@ exports.save_existing_post = function (req, res) {
             date_updated: date_time.toJSON().slice(0,19).replace('T',':')
         },
         (error, blogpost) =>{            
-            req.session.userMessage ='Post Saved Successfully';
+            req.app.userMessage ='Post Saved Successfully';
             res.redirect('/posts/view_post/'+blogpost._id);
         }
     )
