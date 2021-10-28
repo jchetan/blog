@@ -15,7 +15,8 @@ exports.view_profile_user = function (req, res) {
             if (user) {                
                 res.render('users/view_profile_user', {user: user});
             } else {
-                
+                req.app.userMessage ='You seem to have logged out';
+                res.redirect('/users/login_user');
                 return;                        
             }
         }
