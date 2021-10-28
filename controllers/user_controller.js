@@ -6,13 +6,7 @@ exports.register_new_user = function (req, res) {
     res.render('users/register_new_user');
 }
 
-exports.view_profile_user = function (req, res) {
-    BlogPost.findById(req.params.id, (error, blogpost) =>{
-        var userMessage = req.app.userMessage;
-        req.app.userMessage = null;        
-        console.log(userMessage);
-        res.render('posts/view_post', {blogpost: blogpost, userMessage : userMessage});
-    });
+exports.view_profile_user = function (req, res) {   
 
     User.findById(
         req.session.userId,
