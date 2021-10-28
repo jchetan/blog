@@ -5,8 +5,13 @@
     <main class="flex-shrink-0">
         <!-- Navigation-->
         <%- include('../layouts/navbar_new'); -%>
+        <% if (locals.userMessage) { %>
+            <div class="alert alert-success" role="alert">
+                <%= userMessage %>
+            </div>
+        <% } %>        
         <!-- Page Content-->
-        <section class="py-5">
+        <section class="py-5">            
             <div class="container px-5 my-5">
                 <div class="row gx-5">
                     <div class="col-lg-3">

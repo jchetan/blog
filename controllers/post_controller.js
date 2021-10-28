@@ -11,7 +11,10 @@ exports.view_all_posts = function (req, res) {
 
 exports.view_post = function (req, res) {
     BlogPost.findById(req.params.id, (error, blogpost) =>{
-        res.render('posts/view_post', {blogpost: blogpost});
+        var userMessage = req.session.userMessage;
+        req.session.userMessage = null;        
+        console.log(userMessage);
+        res.render('posts/view_post', {blogpost: blogpost, userMessage : userMessage});
     });
 }
 
@@ -47,9 +50,7 @@ exports.edit_existing_post = function (req, res) {
 
 exports.save_existing_post = function (req, res) {
     var date_time = new Date();
-    console.log(req.params.id);
-    console.log(req.body.blog_title);
-    console.log(req.body.blog_content);
+    
     BlogPost.findByIdAndUpdate(
         req.params.id, 
         {
@@ -57,9 +58,9 @@ exports.save_existing_post = function (req, res) {
             body: req.body.blog_content,
             date_updated: date_time.toJSON().slice(0,19).replace('T',':')
         },
-        (error, blogpost) =>{
-            console.log(error,blogpost)
-            res.redirect('/save_post_confirmation_message');
+        (error, blogpost) =>{            
+            req.session.userMessage ='Post Saved Successfully';
+            res.redirect('/posts/view_post/'+blogpost._id);
         }
     )
 }
