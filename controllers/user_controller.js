@@ -67,6 +67,9 @@ exports.login_user = function (req, res) {
     var userMessage = req.session.userMessage;
     req.session.userMessage = null;        
     console.log(userMessage);
+    if (req.session.destroySession) {
+        req.session.destroy();
+    }
     res.render('users/login_user', {userMessage : userMessage});
 }
 
@@ -119,7 +122,7 @@ exports.validate_login_user = [
 ];
 
 exports.logout_user = function (req, res) {
-    req.session.destroy(() =>{
-        res.redirect('/users/login_user')
-    })
+        req.session.userMessage ='Logged out Successfully';
+        req.session.destroySession = true;
+        res.redirect('/users/login_user');    
 }
