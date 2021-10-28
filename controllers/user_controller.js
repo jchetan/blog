@@ -6,6 +6,28 @@ exports.register_new_user = function (req, res) {
     res.render('users/register_new_user');
 }
 
+exports.view_profile_user = function (req, res) {
+    BlogPost.findById(req.params.id, (error, blogpost) =>{
+        var userMessage = req.app.userMessage;
+        req.app.userMessage = null;        
+        console.log(userMessage);
+        res.render('posts/view_post', {blogpost: blogpost, userMessage : userMessage});
+    });
+
+    User.findById(
+        req.session.userId,
+        function (err, user) {
+            console.log(user);          
+            if (user) {                
+                res.render('users/view_profile_user', {user: user});
+            } else {
+                
+                return;                        
+            }
+        }
+    );    
+}
+
 exports.save_new_user = [
     check('username')
         .not()
@@ -25,7 +47,11 @@ exports.save_new_user = [
             } else {
                 return true;
             }
-        }),    
+        }),
+    check('name')
+        .not()
+        .isEmpty()
+        .withMessage('Name is required'),
     function (req, res) {
         var errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -33,6 +59,7 @@ exports.save_new_user = [
             return;
         } else {
             var date_time = new Date();
+            
             User.findOne(
                 {
                     username: req.body.username
@@ -48,6 +75,7 @@ exports.save_new_user = [
                             {
                                 username: req.body.username,
                                 password: hashedPassword,
+                                name: req.body.name,
                                 date_account_created: date_time.toJSON().slice(0,19).replace('T',':'),                
                             }, (error, blogpost) => {
                                 req.app.userMessage ='User Registered Successfully';
@@ -63,13 +91,8 @@ exports.save_new_user = [
 
 exports.login_user = function (req, res) {
     var userMessage = req.app.userMessage;
-    req.app.userMessage = null;
-    //req.session.userMessage = null;
-    console.log(userMessage);
-    //if (req.session.destroySession) {
-    //    req.session.username = null;
-    //    req.session.destroy();
-    //}
+    req.app.userMessage = null;    
+    console.log(userMessage);    
     res.render('users/login_user', {userMessage: userMessage});
 }
 
@@ -96,13 +119,11 @@ exports.validate_login_user = [
                 {
                     username: req.body.username
                 },
-                function (err, user) {
-                    console.log("inside");
-                    console.log(req.body.username);
+                function (err, user) {                   
                     if (user) {                
                         const result = bcrypt.compareSync(req.body.password, user.password)                 
                         if (result) {                    
-                            req.session.username = user.username;
+                            req.session.userId = user._id;
                             req.app.userMessage ='Logged in Successfully';
                             res.redirect('/');
                         } else {
@@ -121,9 +142,7 @@ exports.validate_login_user = [
     }
 ];
 
-exports.logout_user = function (req, res) {
-    //req.session.userMessage ='Logged out Successfully';
-    //req.session.destroySession = true;
+exports.logout_user = function (req, res) {    
     req.session.destroy();
     req.app.userMessage = 'Logged out Successfully';
     res.redirect('/users/login_user');    

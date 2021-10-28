@@ -19,7 +19,7 @@ app.use(express.urlencoded({extended:true}));
 
 global.loggedIn = null;
 app.use("*", (req, res, next) => {
-    loggedIn = req.session.username;
+    loggedIn = req.session.userId;
     console.log(loggedIn);
     next()
 });

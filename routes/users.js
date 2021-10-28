@@ -7,5 +7,6 @@ router.post('/save_new_user', user_controller.save_new_user);
 router.get('/login_user', user_controller.login_user);
 router.post('/validate_login_user', user_controller.validate_login_user);
 router.get('/logout_user', user_controller.logout_user);
+router.get('/view_profile_user', user_controller.view_profile_user);
 
 module.exports = router;

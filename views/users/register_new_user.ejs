@@ -22,19 +22,24 @@
                               </div>
                               <% } %>
                           <% } %>                           
-                          <form action="/users/save_new_user" method="POST">                            
-                              <!-- Username input-->
-                              <div class="form-floating mb-3">                                    
+                          <form action="/users/save_new_user" method="POST">            
+                            <!-- Username input-->
+                            <div class="form-floating mb-3">                                    
+                                <input class="form-control" id="name" name="name" type="text" placeholder="Name"/>
+                                <label for="username">Name</label>                                    
+                            </div>                
+                            <!-- Username input-->
+                            <div class="form-floating mb-3">                                    
                                   <input class="form-control" id="username" name="username" type="text" placeholder="Username"/>
                                   <label for="username">Username</label>                                    
-                              </div>
+                            </div>
                               <!-- Password input-->
-                              <div class="form-floating mb-3">                                    
+                            <div class="form-floating mb-3">                                    
                                   <input class="form-control" id="password" name="password" type="password" placeholder="Password"  />
                                   <label for="password">Password</label>                                    
-                              </div>    
+                            </div>    
                               <!-- Confirm Password input-->     
-                              <div class="form-floating mb-3">                                    
+                            <div class="form-floating mb-3">                                    
                                 <input class="form-control" id="confirm_password" name="confirm_password" type="password" placeholder="Password"  />
                                 <label for="confirm_password">Confirm Password</label>                                    
                             </div>                        
