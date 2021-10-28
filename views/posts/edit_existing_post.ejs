@@ -14,7 +14,7 @@
                         <h1 class="fw-bolder">Edit Post</h1>                        
                     </div>
                     <div class="row gx-5 justify-content-center">
-                        <div class="col-lg-8 col-xl-6">                         
+                        <div class="col-lg-16 col-xl-12 text-center">                         
                             <form method="post" action="/posts/save_existing_post/<%= blogpost._id %>">
                                 <!-- Blog Title input-->
                                 <div class="form-floating mb-3">                                         
@@ -28,7 +28,7 @@
                                     </div>                                                                                                       
                                 </div>                                
                                 <!-- Submit Button-->
-                                <div class="d-grid"><button class="btn btn-primary btn-lg" id="submitButton" type="submit">Save Post</button></div>
+                                <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Save Post</button>
                             </form>
                         </div>
                     </div>
