@@ -34,7 +34,8 @@ exports.save_new_post = function (req, res) {
             date_posted: date_time.toJSON().slice(0,19).replace('T',':'),
             date_updated: date_time.toJSON().slice(0,19).replace('T',':')
         }, (error, blogpost) => {
-            res.redirect('/create_post_confirmation_message');
+            req.session.userMessage ='Post Saved Successfully';
+            res.redirect('/posts/view_post/'+blogpost._id);
         }
     );  
 }
