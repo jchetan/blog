@@ -4,7 +4,10 @@ exports.view_all_posts = function (req, res) {
     BlogPost.find(
         {},
         (error, blogposts) => {
-            res.render('index', {blogposts: blogposts});
+            var userMessage = req.session.userMessage;
+            req.session.userMessage = null;        
+            console.log(userMessage);
+            res.render('index', {blogposts: blogposts, userMessage: userMessage});
         }
     );
 }

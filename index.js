@@ -52,14 +52,5 @@ var static_pagesRouter = require('./routes/static_pages');
 app.use('/', indexRouter);
 app.use('/posts', postsRouter);
 app.use('/users', usersRouter);
-app.use('/static_pages', static_pagesRouter);
-
-app.get('/user_registered_confirmation_message',(req,res)=>{
-    res.render('show_confirmation_message', {message: "New User Registered Successfully"});              
-});
-
-app.get('/correct_password_message',(req,res)=>{
-    res.render('show_confirmation_message', {message: "Logged in Successfully"});              
-});
 
 app.use((req, res) => res.render('static_pages/404error'));

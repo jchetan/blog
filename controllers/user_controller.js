@@ -100,7 +100,8 @@ exports.validate_login_user = [
                         const result = bcrypt.compareSync(req.body.password, user.password)                 
                         if (result) {                    
                             req.session.username = user.username;
-                            res.redirect('/correct_password_message');
+                            req.session.userMessage ='Logged in Successfully';
+                            res.redirect('/');
                         } else {
                             var err = [{msg: "Incorrect Password, please try again"}];
                             res.render('users/login_user', {errors: err});
@@ -118,7 +119,7 @@ exports.validate_login_user = [
 ];
 
 exports.logout_user = function (req, res) {
-    req.session.destroy(() =>{        
+    req.session.destroy(() =>{
         res.redirect('/users/login_user')
     })
 }
