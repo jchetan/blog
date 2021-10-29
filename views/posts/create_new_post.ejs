@@ -14,7 +14,14 @@
                         <h1 class="fw-bolder">Create new Post</h1>                        
                     </div>
                     <div class="row gx-5 justify-content-center">
-                        <div class="col-lg-16 col-xl-12 text-center">                         
+                        <div class="col-lg-16 col-xl-12 text-center">    
+                            <% if (locals.errors) { %>
+                                <% for (var i = 0; i < errors.length; i++) { %>
+                                <div class="alert alert-primary" role="alert">
+                                    <%= errors[i].msg %>
+                                </div>
+                                <% } %>
+                            <% } %>                      
                             <form method="post" action="/posts/save_new_post">
                                 <!-- Blog Title input-->
                                 <div class="form-floating mb-3">     

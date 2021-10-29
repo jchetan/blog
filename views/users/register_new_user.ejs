@@ -15,10 +15,10 @@
                   </div>
                   <div class="row gx-5 justify-content-center">
                       <div class="col-lg-8 col-xl-6">
-                          <% if (locals.errors) { %>
-                              <% for (var i = 0; i < errors.length; i++) { %>
+                          <% if (locals.errorMessages) { %>
+                              <% for (var i = 0; i < errorMessages.length; i++) { %>
                               <div class="alert alert-primary" role="alert">
-                                  <%= errors[i].msg %>
+                                  <%= errorMessages[i].msg %>
                               </div>
                               <% } %>
                           <% } %>                           

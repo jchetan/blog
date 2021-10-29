@@ -3,7 +3,11 @@ const bcrypt = require('bcryptjs');
 const { check,  validationResult} = require("express-validator");
 
 exports.register_new_user = function (req, res) {
-    res.render('users/register_new_user');
+    
+    var errorMessages = req.app.errorMessages;
+    req.app.userMessage = null;   
+    req.app.errorMessages = null;
+    res.render('users/register_new_user', {errorMessages: errorMessages});
 }
 
 exports.view_profile_user = function (req, res) {   
@@ -50,11 +54,11 @@ exports.save_new_user = [
     function (req, res) {
         var errors = validationResult(req);
         if (!errors.isEmpty()) {
-            res.render('users/register_new_user', {errors: errors.array()});
+            req.app.errorMessages = errors.array();
+            res.redirect('/users/register_new_user');
             return;
         } else {
-            var date_time = new Date();
-            
+            var date_time = new Date();            
             User.findOne(
                 {
                     username: req.body.username
@@ -62,7 +66,8 @@ exports.save_new_user = [
                 function (err, user) {
                     if (user) {
                         var err = [{msg: "User is already registered"}];
-                        res.render('users/register_new_user', {errors: err});
+                        req.app.errorMessages = err;
+                        res.redirect('/users/register_new_user');
                         return;                              
                     } else {
                         const hashedPassword = bcrypt.hashSync(req.body.password, 10);
@@ -86,9 +91,10 @@ exports.save_new_user = [
 
 exports.login_user = function (req, res) {
     var userMessage = req.app.userMessage;
-    req.app.userMessage = null;    
-    console.log(userMessage);    
-    res.render('users/login_user', {userMessage: userMessage});
+    var errorMessages = req.app.errorMessages;
+    req.app.userMessage = null;   
+    req.app.errorMessages = null;    
+    res.render('users/login_user', {userMessage: userMessage, errorMessages: errorMessages});
 }
 
 exports.validate_login_user = [
@@ -107,7 +113,8 @@ exports.validate_login_user = [
         var errors = validationResult(req);
         if (!errors.isEmpty()) {
             // There are errors. Render the form again with sanitized values/error messages.
-            res.render('users/login_user', {errors: errors.array()});
+            req.app.errorMessages = errors.array();
+            res.redirect('/users/login_user');
             return;
         } else {
             User.findOne(
@@ -123,12 +130,14 @@ exports.validate_login_user = [
                             res.redirect('/');
                         } else {
                             var err = [{msg: "Incorrect Password, please try again"}];
-                            res.render('users/login_user', {errors: err});
+                            req.app.errorMessages = err;
+                            res.redirect('/users/login_user');
                             return;
                         }   
                     } else {
                         var err = [{msg: "User does not exist, please register first"}];
-                        res.render('users/login_user', {errors: err});
+                        req.app.errorMessages = err;
+                        res.redirect('/users/login_user');
                         return;                        
                     }
                 }
