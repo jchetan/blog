@@ -28,6 +28,10 @@ exports.view_profile_user = function (req, res) {
 }
 
 exports.save_new_user = [
+    check('name')
+        .not()
+        .isEmpty()
+        .withMessage('Name is required'),
     check('username')
         .not()
         .isEmpty()
@@ -46,11 +50,7 @@ exports.save_new_user = [
             } else {
                 return true;
             }
-        }),
-    check('name')
-        .not()
-        .isEmpty()
-        .withMessage('Name is required'),
+        }),    
     function (req, res) {
         var errors = validationResult(req);
         if (!errors.isEmpty()) {

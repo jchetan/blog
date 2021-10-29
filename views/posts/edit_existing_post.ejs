@@ -15,23 +15,23 @@
                     </div>
                     <div class="row gx-5 justify-content-center">
                         <div class="col-lg-16 col-xl-12 text-center">  
-                            <% if (locals.errors) { %>
-                                <% for (var i = 0; i < errors.length; i++) { %>
+                            <% if (locals.errorMessages) { %>
+                                <% for (var i = 0; i < errorMessages.length; i++) { %>
                                 <div class="alert alert-primary" role="alert">
-                                    <%= errors[i].msg %>
+                                    <%= errorMessages[i].msg %>
                                 </div>
                                 <% } %>
-                            <% } %>                        
+                            <% } %>                         
                             <form method="post" action="/posts/save_existing_post">
                                 <!-- Blog Title input-->
                                 <div class="form-floating mb-3">                                         
                                     <input class="form-control" id="blog_title" name="blog_title" type="text" placeholder="Username" value="<%= blogpost.title%>"/>
-                                                             
+                                    <label for="blog_title">Blog Title</label>           
                                 </div>
                                 <!-- Blog Content input-->
                                 <div class="form-floating mb-3">   
                                     <div class="form-group">
-                                        <textarea rows="6" class="form-control" id="blog_content" name="blog_content"><%= blogpost.body %></textarea>	
+                                        <textarea rows="6" placeholder="Blog Content" class="form-control" id="blog_content" name="blog_content"><%= blogpost.body %></textarea>	
                                     </div>                                                                                                       
                                 </div>                        
                                 <input type="hidden" id="custId" name="blog_id" value="<%= blogpost._id %>">        

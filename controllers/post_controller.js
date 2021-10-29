@@ -26,7 +26,9 @@ exports.view_post = function (req, res) {
 
 exports.create_new_post = function (req, res) {
     if(req.session.userId){
-        return res.render("posts/create_new_post");
+        var errorMessages = req.app.errorMessages;
+        req.app.errorMessages = null; 
+        return res.render("posts/create_new_post", {errorMessages: errorMessages});
     }
     res.redirect('/users/login_user')
 }
@@ -44,7 +46,8 @@ exports.save_new_post = [
         var errors = validationResult(req);
         
         if (!errors.isEmpty()) {
-            res.render('posts/create_new_post', {errors: errors.array()});
+            req.app.errorMessages = errors.array();
+            res.redirect('/posts/create_new_post');
             return;
         } else {
             var date_time = new Date();
@@ -64,11 +67,15 @@ exports.save_new_post = [
     }
 ] 
     
-
 exports.edit_existing_post = function (req, res) {
+    
     BlogPost.findById(req.params.id, (error, blogpost) =>{
-        if(req.session.userId){
-            return res.render('posts/edit_existing_post', {blogpost: blogpost});            
+        if(req.session.userId){      
+            console.log("inside the edit post handler");
+            var errorMessages = req.app.errorMessages;
+            req.app.errorMessages = null;      
+            console.log(errorMessages); 
+            return res.render('posts/edit_existing_post', {blogpost: blogpost, errorMessages: errorMessages});            
         }
         res.redirect('/users/login_user')
     }) 
@@ -78,18 +85,19 @@ exports.save_existing_post = [
     check('blog_title')
         .not()
         .isEmpty()
-        .withMessage('Blog Title is required'),
+        .withMessage('Blog Title cannot be empty'),
     check('blog_content')
         .not()
         .isEmpty()
-        .withMessage('Content is required'),
+        .withMessage('Blog Content cannot be empty'),
     function (req,res) {
         var errors = validationResult(req);
 
         if (!errors.isEmpty()) {
             console.log("there is an error");
             const blogpost = BlogPost.findById(req.body.blog_id);
-            res.render('posts/edit_existing_post', {blogpost: blogpost, errors: errors.array()});
+            req.app.errorMessages = errors.array();
+            res.redirect('/posts/edit_existing_post/' + req.body.blog_id);
             return;
         } else {
             var date_time = new Date();
