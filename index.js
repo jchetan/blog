@@ -2,7 +2,6 @@ const express = require('express');
 const ejs = require('ejs')
 const mongoose = require('mongoose');
 const session = require('express-session');
-const keys = require('./config/keys');
 
 const app = express();
 
