@@ -28,7 +28,7 @@ app.use("*", (req, res, next) => {
 var mongoURI;
 
 
-    mongoURI = keys.mongoURI;
+    mongoURI = 'mongodb+srv://jchetan:vatja123@cluster0.sgaf5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 
 
 mongoose.connect(
