@@ -2,6 +2,7 @@ const express = require('express');
 const ejs = require('ejs')
 const mongoose = require('mongoose');
 const session = require('express-session');
+const keys = require('./config/keys');
 
 const app = express();
 
@@ -25,7 +26,7 @@ app.use("*", (req, res, next) => {
 });
 
 mongoose.connect(
-    'mongodb+srv://jchetan:vatja123@cluster0.sgaf5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', 
+    keys.mongoURI, 
     { useNewUrlParser : true, useUnifiedTopology: true }
 );
 
