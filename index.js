@@ -27,11 +27,9 @@ app.use("*", (req, res, next) => {
 
 var mongoURI;
 
-if (process.env.NODE_ENV === 'production'){
-    mongoURI = process.env.MONGO_URI;
-} else {
+
     mongoURI = keys.mongoURI;
-}
+
 
 mongoose.connect(
     mongoURI, 
