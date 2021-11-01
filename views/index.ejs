@@ -1,51 +1,52 @@
 <!doctype html>
 <html lang="en">
 <%- include('layouts/header_new'); -%>  
-<body class="d-flex flex-column h-100">
-    <main class="flex-shrink-0">
-        <!-- Navigation-->
-        <%- include('layouts/navbar_new'); -%>
+<body>    
+    <!-- Navigation-->
+    <%- include('layouts/navbar_new'); -%>
+
+    <% if (locals.userMessage) { %>
+        <div class="alert alert-success text-center" role="alert">
+            <%= userMessage %>
+        </div>
+    <% } %>  
     
-        <% if (locals.userMessage) { %>
-            <div class="alert alert-success text-center" role="alert">
-                <%= userMessage %>
-            </div>
-        <% } %>  
-        <!-- Header section-->
-        <div class="container bg-primary text-white p-5 mt-3">
-            <h1 class="p-3 text-center">Film Blog</h1>
-            <p class="p-3 text-center">A different kind of film blog</p>
-        </div>      
-        <!-- Blog preview section-->
-        <section class="py-5">
-            <div class="container px-5 my-5">                
-                <div class="row gx-5">
-                    <% for (var i = 0; i < blogposts.length; i++) { %>
-                    <div class="col-lg-4 mb-5">
-                        <div class="card h-100 shadow border-0">                            
-                            <div class="card-body p-4">                                
-                                <a class="text-decoration-none link-dark stretched-link" href="/posts/view_post/<%= blogposts[i]._id %>"><h5 class="card-title mb-3"><%= blogposts[i].title %></h5></a>
-                            </div>
-                            <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
-                                <div class="d-flex align-items-end justify-content-between">
-                                    <div class="d-flex align-items-center">                                        
-                                        <div class="small">
-                                            <div class="text-muted">First Posted on <%= blogposts[i].date_posted %></div>
-                                            <hr>
-                                            <div class="text-muted">Post Updated on <%= blogposts[i].date_updated %></div>
-                                            <hr>
-                                            <div class="text-muted">Posted by <%= blogposts[i].userId.name %></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>                            
-                        </div>
+    <!-- Header section-->
+    <div class="container-fluid bg-primary text-white">
+        <h1 class="p-3 text-center">Film Blog!</h1>
+        <p class="p-3 text-center">A different kind of film blog</p>
+    </div> 
+            
+    <!-- Blog Posts preview section-->
+        
+    <div class="container">                
+        <div class="row">
+            <% for (var i = 0; i < blogposts.length; i++) { %>
+            <div class="col-lg-4 mb-5">
+                <div class="card h-100 shadow border-0">                            
+                    <div class="card-body p-4">                                
+                        <a class="text-decoration-none link-dark stretched-link" href="/posts/view_post/<%= blogposts[i]._id %>"><h5 class="card-title mb-3"><%= blogposts[i].title %></h5></a>
                     </div>
-                    <% } %>
-                </div>                   
+                    <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                        <div class="d-flex align-items-end justify-content-between">
+                            <div class="d-flex align-items-center">                                        
+                                <div class="small">
+                                    <div class="text-muted">First Posted on <%= blogposts[i].date_posted %></div>
+                                    <hr>
+                                    <div class="text-muted">Post Updated on <%= blogposts[i].date_updated %></div>
+                                    <hr>
+                                    <div class="text-muted">Posted by <%= blogposts[i].userId.name %></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                            
+                </div>
             </div>
-        </section>
-    </main>
+            <% } %>
+        </div>                   
+    </div>
+        
+    
     <!-- Footer-->
     <%- include('layouts/footer_new'); -%>
     <%- include('layouts/scripts_new'); -%>
