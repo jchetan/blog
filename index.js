@@ -25,14 +25,8 @@ app.use("*", (req, res, next) => {
     next()
 });
 
-var mongoURI;
-
-
-    mongoURI = 'mongodb+srv://jchetan:vatja123@cluster0.sgaf5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
-
-
 mongoose.connect(
-    mongoURI, 
+    'mongodb+srv://jchetan:vatja123@cluster0.sgaf5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', 
     { useNewUrlParser : true, useUnifiedTopology: true }
 );
 
