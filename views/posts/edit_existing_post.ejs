@@ -31,8 +31,14 @@
                                 <!-- Blog Content input-->
                                 <div class="form-floating mb-3">   
                                     <div class="form-group">
-                                        <textarea rows="6" placeholder="Blog Content" class="form-control" id="blog_content" name="blog_content"><%= blogpost.body %></textarea>	
-                                    </div>                                                                                                       
+                                        <textarea rows="6" placeholder="Blog Content" class="form-control" id="blog_content" name="blog_content"><%- blogpost.body%></textarea>	
+                                    </div>
+                                    <script>
+                                        $('#blog_content').summernote({
+                                        tabsize: 2,
+                                        height: 200
+                                        });
+                                    </script>                                                                                                   
                                 </div>                        
                                 <input type="hidden" id="custId" name="blog_id" value="<%= blogpost._id %>">        
                                 <!-- Submit Button-->
