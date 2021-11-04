@@ -13,18 +13,18 @@
     
     <!-- Header section-->
     <div class="container-fluid bg-primary text-white">
-        <h1 class="p-3 text-center">Film Blog!</h1>
-        <p class="p-3 text-center">A different kind of film blog</p>
+        <h1 class="py-3 text-center">Film Blog!</h1>
+        <p class="py-3 text-center">A different kind of film blog</p>
     </div> 
             
-    <!-- Blog Posts preview section-->
+    <!-- Blog Posts preview section--> 
         
     <div class="container">                
         <div class="row">
             <% for (var i = 0; i < blogposts.length; i++) { %>
             <div class="col-lg-4 mb-5">
                 <div class="card h-100 shadow border-0">                            
-                    <div class="card-body p-4">                                
+                    <div class="card-body p-4">
                         <a class="text-decoration-none link-dark stretched-link" href="/posts/view_post/<%= blogposts[i]._id %>"><h5 class="card-title mb-3"><%= blogposts[i].title %></h5></a>
                     </div>
                     <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
@@ -44,8 +44,7 @@
             </div>
             <% } %>
         </div>                   
-    </div>
-        
+    </div>       
     
     <!-- Footer-->
     <%- include('layouts/footer_new'); -%>

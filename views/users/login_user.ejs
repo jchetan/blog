@@ -12,37 +12,40 @@
             </div>
         <% } %>    
         <!-- Page content-->
-                
-        <div class="bg-light rounded-3 py-5 px-3">
-            <div class="text-center mb-5">                        
-                <h1 class="fw-bolder">Login</h1>                        
-            </div>
+
+        <div class="container my-5">
             <div class="row justify-content-center">
-                <div class="col-lg-8 col-xl-6">
-                    <% if (locals.errorMessages) { %>
-                        <% for (var i = 0; i < errorMessages.length; i++) { %>
-                        <div class="alert p-0 alert-primary" role="alert">                                    
-                            <%= errorMessages[i].msg %>
-                        </div>
-                        <% } %>
-                    <% } %> 
-                    <form id="contactForm" action="/users/validate_login_user" method="POST">
-                        <!-- Username input-->
-                        <div class="form-floating my-3">                                    
-                            <input class="form-control" id="username" name="username" type="text" placeholder="Username"/>
-                            <label for="username">Username</label>                                    
-                        </div>
-                        <!-- Password input-->
-                        <div class="form-floating my-3">                                    
-                            <input class="form-control" id="password" name="password" type="password" placeholder="Password"  />
-                            <label for="password">Password</label>                                    
-                        </div>                                
-                        <!-- Submit Button-->
-                        <div class="d-grid"><button class="btn btn-primary btn-lg" id="submitButton" type="submit">Submit</button></div>
-                    </form>
+              <div class="col-5 bg-light">
+                
+                <div class="row">
+                  <h1 class="fw-bolder text-center">Login</h1>       
                 </div>
+                <% if (locals.errorMessages) { %>
+                    <% for (var i = 0; i < errorMessages.length; i++) { %>
+                    <div class="alert p-0 alert-primary" role="alert">                                    
+                        <%= errorMessages[i].msg %>
+                    </div>
+                    <% } %>
+                <% } %> 
+                <form id="contactForm" action="/users/validate_login_user" method="POST">
+                    <!-- Username input-->
+                    <div class="form-floating my-3">                                    
+                        <input class="form-control" id="username" name="username" type="text" placeholder="Username"/>
+                        <label for="username">Username</label>                                    
+                    </div>
+                    <!-- Password input-->
+                    <div class="form-floating my-3">                                    
+                        <input class="form-control" id="password" name="password" type="password" placeholder="Password"  />
+                        <label for="password">Password</label>                                    
+                    </div>                                
+                    <!-- Submit Button-->
+                    <div class="d-grid my-3">
+                        <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Submit</button>
+                    </div>
+                </form>
+              </div>
             </div>
-        </div>    
+        </div>
     </main>
     <%- include('../layouts/footer_new'); -%>
     <%- include('../layouts/scripts_new'); -%>

@@ -3,24 +3,25 @@
 <%- include('../layouts/header_new'); -%>  
 <body class="d-flex flex-column">
     <main class="flex-shrink-0">
-      <!-- Navigation-->
-      <%- include('../layouts/navbar_new'); -%>
-      <!-- Page content-->
-      
-        <div class="bg-light rounded-3 py-5 px-3">
-            <div class="text-center mb-5">                        
-                <h1 class="fw-bolder">Register</h1>                        
-            </div>
+        <!-- Navigation-->
+        <%- include('../layouts/navbar_new'); -%>
+        <!-- Page content-->
+
+        <div class="container my-5">
             <div class="row justify-content-center">
-                <div class="col-lg-8 col-xl-6">
-                    <% if (locals.errorMessages) { %>
-                        <% for (var i = 0; i < errorMessages.length; i++) { %>
-                        <div class="alert p-0 alert-primary" role="alert">
-                            <%= errorMessages[i].msg %>
-                        </div>
-                        <% } %>
-                    <% } %>                           
-                    <form action="/users/save_new_user" method="POST">            
+            <div class="col-5 bg-light">
+                
+                <div class="row">
+                <h1 class="fw-bolder text-center">Register</h1>       
+                </div>
+                <% if (locals.errorMessages) { %>
+                    <% for (var i = 0; i < errorMessages.length; i++) { %>
+                    <div class="alert p-0 alert-primary" role="alert">                                    
+                        <%= errorMessages[i].msg %>
+                    </div>
+                    <% } %>
+                <% } %> 
+                <form action="/users/save_new_user" method="POST">            
                     <!-- Username input-->
                     <div class="form-floating mb-3">                                    
                         <input class="form-control" id="name" name="name" type="text" placeholder="Name"/>
@@ -41,12 +42,15 @@
                         <input class="form-control" id="confirm_password" name="confirm_password" type="password" placeholder="Password"  />
                         <label for="confirm_password">Confirm Password</label>                                    
                     </div>                        
-                        <!-- Submit Button-->
-                        <div class="d-grid"><button class="btn btn-primary btn-lg" id="submitButton" type="submit">Register</button></div>
-                    </form>
-                </div>
+                    <!-- Submit Button-->
+                    <div class="d-grid">
+                        <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Register</button>
+                    </div>
+                </form>
             </div>
-        </div>            
+            </div>
+        </div>   
+                
           
     </main>
     <%- include('../layouts/footer_new'); -%>
