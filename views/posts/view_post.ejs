@@ -2,7 +2,7 @@
 <html lang="en">
 <%- include('../layouts/header_new'); -%>  
 <body class="d-flex flex-column">
-    <main class="flex-shrink-0">
+    
         <!-- Navigation-->
         <%- include('../layouts/navbar_new'); -%>
         <% if (locals.userMessage) { %>
@@ -11,38 +11,21 @@
             </div>
         <% } %>        
         <!-- Page Content-->
-        <section class="py-5">            
-            <div class="container px-5 my-5">
-                <div class="row gx-5">
-                    
-                    <div class="col-lg-12">
-                        <!-- Post content-->
-                        <article>
-                            <!-- Post header-->
-                            <header class="mb-4">
-                                <!-- Post title-->
-                                <h1 class="fw-bolder mb-1"><%= blogpost.title %></h1>
-                                <!-- Post meta content-->
-                                <div class="text-muted fst-italic mb-2">Created: <%= blogpost.date_posted %> by <%= blogpost.userId.name %></div>
-                                <div class="text-muted fst-italic mb-2">Updated: <%= blogpost.date_updated %></div>
-                            </header>
-                            <!-- Post content-->
-                            <section class="mb-5">
-                                <p class="fs-5 mb-4"><%- blogpost.body %></p>                                
-                            </section>
-                            <% if (loggedIn) { %>
-                            <section class="mb-5">
-                                <a class="btn btn-primary text-uppercase" href="/posts/edit_existing_post/<%= blogpost._id %>">
-                                    Edit Post
-                                </a>                            
-                            </section>
-                            <% } %>
-                        </article>                 
+
+        <div class="container">        
+            <div class="row justify-content-center">
+                <div class="col-10">
+                   
+                    <div class="row py-3 my-3">
+                        <h1 class="fw-bolder mb-1"><%= blogpost.title %></h1>
+                        <div class="text-muted fst-italic mb-2">Created: <%= blogpost.date_posted %> by <%= blogpost.userId.name %></div>
+                        <div class="text-muted fst-italic mb-2">Updated: <%= blogpost.date_updated %></div>
+                        <p class="fs-5"><%- blogpost.body %></p> 
                     </div>
-                </div>
-            </div>
-        </section>
-    </main>
+                </div>            
+            </div>        
+        </div>    
+    
     <!-- Footer-->
     <%- include('../layouts/footer_new'); -%>
     <%- include('../layouts/scripts_new'); -%>
