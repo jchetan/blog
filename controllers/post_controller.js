@@ -30,7 +30,7 @@ exports.create_new_post = function (req, res) {
         req.app.errorMessages = null; 
         return res.render("posts/create_new_post", {errorMessages: errorMessages});
     }
-    res.redirect('/users/login_user')
+    res.redirect('/users/login')
 }
 
 exports.save_new_post = [
@@ -81,7 +81,7 @@ exports.edit_existing_post = function (req, res) {
             console.log(errorMessages); 
             return res.render('posts/edit_existing_post', {blogpost: blogpost, errorMessages: errorMessages});            
         }
-        res.redirect('/users/login_user')
+        res.redirect('/users/login')
     }) 
 }
 
