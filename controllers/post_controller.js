@@ -37,10 +37,14 @@ exports.save_new_post = [
     check('blog_title')
         .not()
         .isEmpty()
+        .trim()
+        .escape()
         .withMessage('Blog Title is required'),
     check('blog_content')
         .not()
         .isEmpty()
+        .trim()
+        .escape()
         .withMessage('Content is required'),
     function(req, res) {
         var errors = validationResult(req);
@@ -85,10 +89,14 @@ exports.save_existing_post = [
     check('blog_title')
         .not()
         .isEmpty()
+        .trim()
+        .escape()
         .withMessage('Blog Title cannot be empty'),
     check('blog_content')
         .not()
         .isEmpty()
+        .trim()
+        .escape()
         .withMessage('Blog Content cannot be empty'),
     function (req,res) {
         var errors = validationResult(req);

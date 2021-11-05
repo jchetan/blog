@@ -29,19 +29,29 @@ exports.view_profile_user = function (req, res) {
 
 exports.save_new_user = [
     check('name')
+        .trim()
+        .escape()
         .not()
-        .isEmpty()
+        .isEmpty()        
         .withMessage('Name is required'),
     check('username')
+        .trim()
+        .escape()
         .not()
         .isEmpty()
-        .withMessage('Username is required')
+        .trim()
+        .escape()
+        .withMessage('Username is required and should be a valid email id')
         .bail()
         .isEmail()
         .withMessage("Username should be a valid email format"),
     check('password')
+        .trim()
+        .escape()
         .not()
         .isEmpty()
+        .trim()
+        .escape()
         .withMessage('Password is required')
         .bail()
         .custom((val, { req }) => {
@@ -99,6 +109,8 @@ exports.login_user = function (req, res) {
 
 exports.validate_login_user = [
     check('username')
+        .trim()
+        .escape()
         .not()
         .isEmpty()
         .withMessage('Username is required')
@@ -106,6 +118,8 @@ exports.validate_login_user = [
         .isEmail()
         .withMessage("Username should be a valid email format"),
     check('password')
+        .trim()
+        .escape()
         .not()
         .isEmpty()
         .withMessage('Password is required'),
