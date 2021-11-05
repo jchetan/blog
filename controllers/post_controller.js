@@ -81,6 +81,7 @@ exports.edit_get = function (req, res) {
             console.log(errorMessages); 
             return res.render('posts/edit', {blogpost: blogpost, errorMessages: errorMessages});            
         }
+        req.app.userMessage ='Please Login to Edit Posts';
         res.redirect('/users/login')
     }) 
 }
