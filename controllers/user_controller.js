@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const BlogPost = require('../models/BlogPost');
 const bcrypt = require('bcryptjs');
 const {check, validationResult} = require("express-validator");
 
@@ -13,9 +14,11 @@ exports.register_get = function (req, res) {
 exports.view_profile_get = async function (req, res) {   
     
     const user = await User.findById(req.session.userId);
+    const blogposts = await BlogPost.find({userId: req.session.userId}).populate('userId');
+
     console.log(user);
     if (user) {                
-        res.render('users/view_profile', {user: user});
+        res.render('users/view_profile', {user: user, blogposts: blogposts});
     } else {
         req.app.userMessage ='You seem to have logged out';
         res.redirect('/users/login');
