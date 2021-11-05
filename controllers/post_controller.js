@@ -1,7 +1,7 @@
 const BlogPost = require('../models/BlogPost');
 const { check,  validationResult} = require("express-validator");
 
-exports.view_all_posts = function (req, res) {
+exports.view_all_get = function (req, res) {
 
     BlogPost
         .find({})
@@ -13,27 +13,27 @@ exports.view_all_posts = function (req, res) {
         })    
 }
 
-exports.view_post = function (req, res) {
+exports.view_one_get = function (req, res) {
     BlogPost
         .findById(req.params.id)
         .populate('userId') 
         .exec( (error, blogpost) => {
             var userMessage = req.app.userMessage;
             req.app.userMessage = null;                    
-            res.render('posts/view_post', {blogpost: blogpost, userMessage : userMessage});
+            res.render('posts/view_one', {blogpost: blogpost, userMessage : userMessage});
     })
 }
 
-exports.create_new_post = function (req, res) {
+exports.create_get = function (req, res) {
     if(req.session.userId){
         var errorMessages = req.app.errorMessages;
         req.app.errorMessages = null; 
-        return res.render("posts/create_new_post", {errorMessages: errorMessages});
+        return res.render("posts/create", {errorMessages: errorMessages});
     }
     res.redirect('/users/login')
 }
 
-exports.save_new_post = [
+exports.create_post = [
     check('blog_title')
         .not()
         .isEmpty()
@@ -51,7 +51,7 @@ exports.save_new_post = [
         
         if (!errors.isEmpty()) {
             req.app.errorMessages = errors.array();
-            res.redirect('/posts/create_new_post');
+            res.redirect('/posts/create');
             return;
         } else {
             var date_time = new Date();
@@ -64,14 +64,14 @@ exports.save_new_post = [
                     date_updated: date_time.toJSON().slice(0,19).replace('T',':')
                 }, (error, blogpost) => {
                     req.app.userMessage ='Post Saved Successfully';
-                    res.redirect('/posts/view_post/'+blogpost._id);
+                    res.redirect('/posts/view_one/'+blogpost._id);
                 }
             ); 
         }     
     }
 ] 
     
-exports.edit_existing_post = function (req, res) {
+exports.edit_get = function (req, res) {
     
     BlogPost.findById(req.params.id, (error, blogpost) =>{
         if(req.session.userId){      
@@ -79,13 +79,13 @@ exports.edit_existing_post = function (req, res) {
             var errorMessages = req.app.errorMessages;
             req.app.errorMessages = null;      
             console.log(errorMessages); 
-            return res.render('posts/edit_existing_post', {blogpost: blogpost, errorMessages: errorMessages});            
+            return res.render('posts/edit', {blogpost: blogpost, errorMessages: errorMessages});            
         }
         res.redirect('/users/login')
     }) 
 }
 
-exports.save_existing_post = [
+exports.edit_post = [
     check('blog_title')
         .not()
         .isEmpty()
@@ -105,7 +105,7 @@ exports.save_existing_post = [
             console.log("there is an error");
             const blogpost = BlogPost.findById(req.body.blog_id);
             req.app.errorMessages = errors.array();
-            res.redirect('/posts/edit_existing_post/' + req.body.blog_id);
+            res.redirect('/posts/edit/' + req.body.blog_id);
             return;
         } else {
             var date_time = new Date();
@@ -118,7 +118,7 @@ exports.save_existing_post = [
                 },
                 (error, blogpost) =>{            
                     req.app.userMessage ='Post Saved Successfully';
-                    res.redirect('/posts/view_post/'+blogpost._id);
+                    res.redirect('/posts/view_one/'+blogpost._id);
                 }
             )
         }

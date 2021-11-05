@@ -20,7 +20,10 @@
                         <p class="display-6 mb-1"><%= blogpost.title %></h1>
                         <div class="text-muted fst-italic mb-2">Created: <%= blogpost.date_posted %> by <%= blogpost.userId.name %></div>
                         <div class="text-muted fst-italic mb-2">Updated: <%= blogpost.date_updated %></div>
-                        <p class="fs-5"><%- blogpost.body %></p> 
+                        <p class="fs-5"><%- blogpost.body %></p>
+                        <a href="/posts/edit/<%= blogpost._id %>">
+                            <button class="btn btn-primary" type="submit">Edit Post</button>
+                        </a>                        
                     </div>
                 </div>            
             </div>        

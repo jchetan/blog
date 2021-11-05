@@ -26,14 +26,14 @@
 
                 <div class="card my-3">
                     <div class="card-header">
-                        <a class="text-decoration-none" href="/posts/view_post/<%= blogposts[i]._id %>">
+                        <a class="text-decoration-none" href="/posts/view_one/<%= blogposts[i]._id %>">
                             <p class="display-6"><%= blogposts[i].title %></h5>
                         </a>
                     </div>
                     <div class="card-body">                          
                         <p class="card-text">
                             <%= blogposts[i].body.substring(0, 200) + "..." %> 
-                            <a href="/posts/view_post/<%= blogposts[i]._id %>" class="">Read more</a> 
+                            <a href="/posts/view_one/<%= blogposts[i]._id %>" class="">Read more</a> 
                         </p>
                     </div>
                     <div class="card-footer">
