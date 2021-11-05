@@ -1,6 +1,6 @@
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
-const { check,  validationResult} = require("express-validator");
+const {check, validationResult} = require("express-validator");
 
 exports.register_get = function (req, res) {
     
@@ -74,17 +74,22 @@ exports.register_post = [
                 return;                              
             } else {
                 const hashedPassword = bcrypt.hashSync(req.body.password, 10);
-                User.create(
+                const user = await User.create(
                     {
                         username: req.body.username,
                         password: hashedPassword,
                         name: req.body.name,
                         date_account_created: date_time.toJSON().slice(0,19).replace('T',':'),                
-                    }, (error, blogpost) => {
-                        req.app.userMessage ='Registered Successfully, please Login to continue';
-                        res.redirect('/users/login');
-                    }
-                ); 
+                    });
+                    
+                if (user) {
+                    req.app.userMessage ='Registered Successfully, please Login to continue';
+                    res.redirect('/users/login');
+                } else {
+                    req.app.userMessage ='There is some problem registering the user';
+                    res.redirect('/users/register');
+                }
+                
             }
                
         }    
